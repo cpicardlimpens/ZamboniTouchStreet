@@ -1,0 +1,76 @@
+
+/*
+ * Base structure
+ */
+p {
+    font-size: 14px;
+}
+
+.p_small {
+    font-size: 10px;
+}
+
+.margin {
+    margin-bottom: 10px;
+}
+
+/*
+ * Backgrounds
+ */
+.bg-1 {
+    background-color: #1abc9c;
+    /* Green */
+    color: #ffffff;
+}
+
+.bg-2 {
+    background-color: #474e5d;
+    /* Dark Blue */
+    color: #ffffff;
+}
+
+.bg-3 {
+    background-color: #eeeeee;
+    /* White */
+    color: #555555;
+}
+
+.bg-4 {
+    background-color: #2f2f2f;
+    /* Black Gray */
+    color: #fff;
+}
+
+.container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+/*
+ * Navigation
+ */
+
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+}
+
+.navbar-nav li a:hover {
+    color: #1abc9c !important;
+}
+
+/*
+ * Google Maps windows
+ */
+ .gm-style .gm-style-iw {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    color: #474e5d;
+}

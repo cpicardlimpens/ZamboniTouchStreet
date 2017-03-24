@@ -1,807 +1,131 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <!--<link rel="icon" href="../../favicon.ico">-->
 
-      <!-- Bootstrap core CSS -->
-      <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--<link rel="icon" href="../../favicon.ico">-->
 
-      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-      <link href="bootstrap/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-      <!-- Custom styles for this template -->
-      <link href="cover.css" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="bootstrap/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-      <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-      <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-      <script src="bootstrap/assets/js/ie-emulation-modes-warning.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="cover.css" rel="stylesheet">
+    <link href="custom.css" rel="stylesheet">
 
-      <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-      <!--[if lt IE 9]>
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="bootstrap/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
 
 
-        <title>Zamboni Styling Map</title>
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-        <meta charset="utf-8">
-        <style>
-          /* Always set the map height explicitly to define the size of the div
+    <title>Zamboni Styling Map</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
            * element that contains the map. */
-          #map {
-            height: 100%;
-          }
-          #concept {
-            height: 100%;
-          }
-          #contacts {
-            height: 100%;
-          }
-          .gm-style .gm-style-iw {
-               font-size: 16px;
-               font-weight: bold;
-               font-family: sans-serif;
-               text-transform: uppercase;
-               color: #474e5d;
-          }
 
-          p {font-size: 14px;}
-          .p_small{font-size: 10px;}
-          .margin {margin-bottom: 10px;}
-          .bg-1 {
-              background-color: #1abc9c; /* Green */
-              color: #ffffff;
-          }
-          .bg-2 {
-              background-color: #474e5d; /* Dark Blue */
-              color: #ffffff;
-          }
-          .bg-3 {
-              background-color: #eeeeee; /* White */
-              color: #555555;
-          }
-          .bg-4 {
-              background-color: #2f2f2f; /* Black Gray */
-              color: #fff;
-          }
-          .container-fluid {
-              padding-top: 70px;
-              padding-bottom: 70px;
-          }
-          .navbar {
-              padding-top: 15px;
-              padding-bottom: 15px;
-              border: 0;
-              border-radius: 0;
-              margin-bottom: 0;
-              font-size: 12px;
-              letter-spacing: 5px;
-          }
-          .navbar-nav  li a:hover {
-              color: #1abc9c !important;
-          }
-          /*.nav li {
-              padding-top: 15px;
-              padding-bottom: 15px;
-              display:inline-block;
-              z-index:100;
-          }
-          .nav li a {
-            display:block;
-            position:relative;
-            z-index:100;
-        }*/
-        /*.container-map {
-            width:100%;
-            height:90%;
-            margin-bottom: 10%;
+        #map {
+            height: 100%;
         }
-        .archive-map {
-            padding-top:80%;
-            width:100%;
-        }*/
 
-          /* Optional: Makes the sample page fill the window. */
-          /*html, body {
+        #concept {
             height: 100%;
-            margin: 0;
-            padding: 0;
-          }*/
-        </style>
-  </head>
+        }
 
-  <body>
-      <div class="site-wrapper">
+        #credits {
+            height: 100%;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="site-wrapper">
         <div class="site-wrapper-inner">
-          <div class="cover-container">
+            <div class="cover-container">
 
-            <div class="masthead clearfix">
-              <div class="inner">
-                <!--<h3 class="masthead-brand">Cover</h3>-->
-                <nav>
-                  <ul class="nav masthead-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#concept">Concept</a></li>
-                    <li><a href="#contacts">Contacts</a></li>
-                  </ul>
-                </nav>
-              </div>
+                <div class="masthead clearfix">
+                    <div class="inner">
+                        <!--<h3 class="masthead-brand">Cover</h3>-->
+                        <nav>
+                            <ul class="nav masthead-nav">
+                                <li class="active"><a href="#">Home</a></li>
+                                <li><a href="#concept">Concept</a></li>
+                                <li><a href="#credits">Credits</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="inner cover">
+                    <h1 class="cover-heading">Zamboni Touch Street</h1>
+                    <p class="lead">Un percorso multimediale alla scoperta di Via Zamboni.</p>
+                    <p class="lead">
+                        <a href="#map" class="btn btn-lg btn-default">Vai</a>
+                    </p>
+                </div>
+
+                <div class="mastfoot">
+                    <div class="inner">
+                        <p class="p_small">Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+                    </div>
+                </div>
+
             </div>
-
-            <div class="inner cover">
-              <h1 class="cover-heading">Zamboni Touch Street</h1>
-              <p class="lead">Un percorso multimediale alla scoperta di Via Zamboni.</p>
-              <p class="lead">
-                <a href="#map" class="btn btn-lg btn-default">Vai</a>
-              </p>
-            </div>
-
-            <div class="mastfoot">
-              <div class="inner">
-                <p class="p_small">Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-              </div>
-            </div>
-
-          </div>
         </div>
-      </div>
-
-      <!-- Bootstrap core JavaScript
-      ================================================== -->
-      <!-- Placed at the end of the document so the pages load faster -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <script>window.jQuery || document.write('<script src="bootstrap/assets/js/vendor/jquery.min.js"><\/script>')</script>
-      <script src="bootstrap/dist/js/bootstrap.min.js"></script>
-      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-      <script src="bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
-
-      <!--<div class="masthead clearfix">
-        <div class="inner">
-      <nav>
-        <ul class="navbar-header">
-          <li class="active"><a href="javascript:triggerMarker(100)">ALL</a>
-          <li><a href="javascript:triggerMarker(0)">1</a></li>
-          <li><a href="javascript:triggerMarker(1)">2</a></li>
-          <li><a href="javascript:triggerMarker(2)">7</a></li>
-        </ul>
-      </nav>
-      </div>
-  </div>-->
-    <!--  <div class="navbar-header">
-      <ul class="nav">
-      <li><a href="javascript:triggerMarker(0)">1</a>
-      </li>
-      <li><a href="javascript:triggerMarker(1)">2</a>
-      </li>
-      <li><a href="javascript:triggerMarker(2)">7</a>
-      </li>
-      <li><a href="javascript:triggerMarker(100)">ALL</a>
-      </li>
-      </ul>
-  </div>-->
-
-
-
-
-    <!-- Modal -->
-
-
-
-
-
-
-
-    <div class="modal fade" id="myModal" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Piazza</h4>
-          </div>
-          <div class="modal-body">
-            <p>To see</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-
-      </div>
     </div>
 
-          <div id="map"></div>
-          <div id="modals"></div>
-
-
+    <!-- Bootstrap core JavaScript
+      ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
-    for(var i =1; i<= 3; i++){
-      $('#modals').append('<div class="modal fade" id="myModal_'+i+'" role="dialog">'+
-      '<div class="modal-dialog">' +
-        '<div class="modal-content">'+
-          '<div class="modal-header">'+
-            '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
-            '<h4 class="modal-title">Piazza'+i+'</h4>'+
-          '</div>'+
-          '<div class="modal-body">'+
-            '<p>To see</p>'+
-          '</div>'+
-          '<div class="modal-footer">'+
-            '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>'+
-          '</div>'+
-        '</div>'+
-      '</div>'+
-      '</div>')
-    }
-
-        var map;
-        var currentMarker;
-        var infoWindow;
-        var markers_list = new Array();
-
-        var c; var count=-1;
-        var current_count=0;
-
-        function ParsingPoints(controlDiv, map) {
-
-          // Set CSS for the control border.
-          var controlUI = document.createElement('div');
-
-          /*controlUI.style.backgroundColor = '#fff';
-          controlUI.style.borderBottom = '2px solid #fff';
-          controlUI.style.borderRadius = '2px';*/
-          controlUI.style.boxShadow = '0px 1px 4px -1px rgba(0, 0, 0, 0.298039)';
-          controlUI.style.cursor = 'pointer';
-          controlUI.style.marginTop = '10px';
-
-          controlUI.style.textAlign = 'center';
-          controlUI.title = 'Click to recenter the map';
-          controlDiv.appendChild(controlUI);
-
-          // Set CSS for the control interior.
-          var controlText = document.createElement('div');
-          controlText.style.color = 'rgba(255,255,255,.75)';
-          controlText.style.fontFamily = 'sans-serif';
-          controlText.style.fontWeight = 'bold';
-          controlText.style.fontSize = '16px';
-          //controlText.style.textTransform = 'uppercase';
-          controlText.style.lineHeight = '38px';
-          controlText.style.paddingLeft = '5px';
-          controlText.style.paddingRight = '5px';
-          controlText.innerHTML = 'Un percorso in 7 Tappe';
-          controlUI.appendChild(controlText);
-
-          // Setup the click event listeners: go to points
-          controlUI.addEventListener('click', function() {
-            if(count<2){
-                count++;
-                if(current_count>-1) markers_list[current_count].setAnimation(null);
-                current_count = count;
-                markers_list[current_count].setAnimation(google.maps.Animation.BOUNCE);
-                controlText.style.color = 'rgba(255,155,155,.75)';
-            } else {
-                controlText.style.color = 'rgba(255,255,255,.75)';
-                count=-1;
-            }
-            triggerMarker(count);
-          });
-        }
-
-        function initMap() {
-            // Styles a map in night mode.
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: 44.4962284, lng: 11.350587899999937},
-                zoom: 16,
-                disableDefaultUI: true,
-                scrollwheel: false,
-                navigationControl: false,
-                mapTypeControl: false,
-                scaleControl: false,
-                draggable: false,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                styles: [
-                    {
-                    "elementType": "geometry",
-                    "stylers": [
-                    {
-                    "color": "#ebe3cd"
-                    }
-                    ]
-                    },
-                    {
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                    {
-                    "color": "#ffeb3b"
-                    }
-                    ]
-                    },
-                    {
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                    {
-                    "color": "#523735"
-                    }
-                    ]
-                    },
-                    {
-                    "elementType": "labels.text.stroke",
-                    "stylers": [
-                    {
-                    "color": "#f5f1e6"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "administrative",
-                    "elementType": "geometry",
-                    "stylers": [
-                    {
-                    "visibility": "off"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "administrative",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                    {
-                    "color": "#c9b2a6"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "administrative.land_parcel",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                    {
-                    "color": "#dcd2be"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "administrative.land_parcel",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                    {
-                    "color": "#ae9e90"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "administrative.neighborhood",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                    {
-                    "color": "#ffeb3b"
-                    },
-                    {
-                    "visibility": "on"
-                    },
-                    {
-                    "weight": 4.5
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "administrative.neighborhood",
-                    "elementType": "labels.text",
-                    "stylers": [
-                    {
-                    "visibility": "on"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "landscape.natural",
-                    "elementType": "geometry",
-                    "stylers": [
-                    {
-                    "color": "#dfd2ae"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "poi",
-                    "stylers": [
-                    {
-                    "visibility": "off"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "poi",
-                    "elementType": "geometry",
-                    "stylers": [
-                    {
-                    "color": "#dfd2ae"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "poi",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                    {
-                    "color": "#93817c"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "poi.park",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                    {
-                    "color": "#a5b076"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "poi.park",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                    {
-                    "color": "#447530"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "road",
-                    "elementType": "geometry",
-                    "stylers": [
-                    {
-                    "color": "#f5f1e6"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "road",
-                    "elementType": "labels.icon",
-                    "stylers": [
-                    {
-                    "visibility": "off"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "road.arterial",
-                    "elementType": "geometry",
-                    "stylers": [
-                    {
-                    "color": "#fdfcf8"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "road.highway",
-                    "elementType": "geometry",
-                    "stylers": [
-                    {
-                    "color": "#f8c967"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "road.highway",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                    {
-                    "color": "#e9bc62"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "road.highway.controlled_access",
-                    "elementType": "geometry",
-                    "stylers": [
-                    {
-                    "color": "#e98d58"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "road.highway.controlled_access",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                    {
-                    "color": "#db8555"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "road.local",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                    {
-                    "color": "#806b63"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "transit",
-                    "stylers": [
-                    {
-                    "visibility": "off"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "transit.line",
-                    "elementType": "geometry",
-                    "stylers": [
-                    {
-                    "color": "#dfd2ae"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "transit.line",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                    {
-                    "color": "#8f7d77"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "transit.line",
-                    "elementType": "labels.text.stroke",
-                    "stylers": [
-                    {
-                    "color": "#ebe3cd"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "transit.station",
-                    "elementType": "geometry",
-                    "stylers": [
-                    {
-                    "color": "#dfd2ae"
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "water",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                    {
-                    "color": "#b9d3c2"
-                    },
-                    {
-                    "weight": 4.5
-                    }
-                    ]
-                    },
-                    {
-                    "featureType": "water",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                    {
-                    "color": "#92998d"
-                    }
-                    ]
-                    }
-                ]
-            });
-            c = map.getCenter();
-            //google.maps.event.addDomListener(window, 'load');
-            google.maps.event.addDomListener(window, "resize", function() {
-                var center = map.getCenter();
-                google.maps.event.trigger(map, "resize");
-                map.setCenter(center);
-            });
-
-            // MAsk to focus on Zamboni street
-            // Define the LatLng coordinates for the polygon's path.
-            var outerCoords = [
-                {lat: 44.49926027609643,lng: 11.327075958251953},
-                {lat: 44.505749187681566,lng: 11.339521408081055},
-                {lat: 44.50109683378502,lng: 11.356086730957031},
-                {lat: 44.485667951204974,lng: 11.358060836791992},
-                {lat: 44.48646398548003,lng: 11.339263916015625},
-                {lat: 44.49044399391039,lng: 11.328964233398438}
-            ];
-
-            // Define the LatLng coordinates for the polygon's inner path.
-            // Note that the points forming the inner path are wound in the
-            // opposite direction to those in the outer path, to form the hole.
-            var innerCoords = [
-                {lat: 44.49428597518099,lng: 11.346087455749512},
-                {lat: 44.49440842460528,lng: 11.347653865814209},
-                {lat: 44.49489821973133,lng: 11.348834037780762},
-                {lat: 44.4954492343308,lng: 11.350829601287842},
-                {lat: 44.49626044079391,lng: 11.352524757385254},
-                {lat: 44.49675022036458,lng: 11.354176998138428},
-                {lat: 44.49740835518457,lng: 11.356065273284912},
-                {lat: 44.49838789092852,lng: 11.356322765350342},
-                {lat: 44.49881643264208,lng: 11.354155540466309},
-                {lat: 44.49806648257639,lng: 11.352567672729492},
-                {lat: 44.49728591205956,lng: 11.351323127746582},
-                {lat: 44.49673491481525,lng: 11.349992752075195},
-                {lat: 44.496382886072254,lng: 11.348190307617188},
-                {lat: 44.49567882221063,lng: 11.3468599319458},
-                {lat: 44.49514311575167,lng: 11.345744132995605},
-                {lat: 44.494454343073116,lng: 11.345658302307129}
-            ];
-
-
-            // Construct the polygon.
-            var zone = new google.maps.Polygon({
-                paths: [outerCoords, innerCoords],
-                strokeColor: '#FFFFFF',
-                strokeOpacity: 0.8,
-                strokeWeight: 1,
-                fillColor: '#FFFFFF',
-                fillOpacity: 0.65
-            });
-            zone.setMap(map);
-            //map.addListener('click', showArrays);
-
-            // HERE automatic get from wordpress
-            var features = [
-              {
-                position: new google.maps.LatLng(44.4944304, 11.346510399999943), // Porta Ravegnana, Due Torri
-                label:'1',
-                title: 'Piazza di Porta Ravegnana e le Due Torri',
-                icon: pinSymbol('green') // storia
-                },{
-                  position: new google.maps.LatLng(44.4955626, 11.348471300000028), // Chiesetta San Donato e Palazzo Malvasia
-                  label:'2',
-                  title:'Chiesetta San Donato e Palazzo Malvasia',
-                  icon: pinSymbol('pink') // arte
-                },{
-                  position: new google.maps.LatLng(44.497422, 11.353620099999944), // Pinacoteca e Musei Universitarie
-                  label:'7',
-                  title: 'Pinacoteca e Musei Universitarie',
-                  icon: pinSymbol('blue') // musei collezioni
-                }
-
-            ];
-
-            for (var i = 0, feature; feature = features[i]; i++) {
-              addMarker(feature);
-            }
-
-            markers_list[current_count].setAnimation(google.maps.Animation.BOUNCE);
-            /////
-            /*function showArrays(event) {
-              console.log(event.latLng.lat() + ',' + event.latLng.lng());
-          }*/
-
-
-
-
-            // Create the DIV to hold the control and call the ParsingPoints() constructor
-              // passing in this DIV.
-              var centerControlDiv = document.createElement('div');
-              var centerControl = new ParsingPoints(centerControlDiv, map);
-
-              centerControlDiv.index = 1;
-              map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
-
-
-        }
-
-        function addMarker(f) {
-            infoWindow = new google.maps.InfoWindow({
-                map: map
-            });
-            //infoWindow.setOptions({strokeWeight: 2.0, strokeColor: 'green', fillColor: 'green'});
-            infoWindow.close();
-            //var currentMark;
-            var marker = new google.maps.Marker({
-                map: map,
-                animation: google.maps.Animation.DROP,
-                position: f.position,
-                //icon: f.icon,//pinSymbol('red')
-                title: f.title,
-                label: f.label
-            });
-            markers_list.push(marker);
-
-            attachSecretMessage(marker, marker.title);
-
-
-          //marker.addListener('click', doZoom);
-          /*function() {
-              map.setZoom(18);
-              map.setCenter(marker.getPosition());
-              infoWindow.close();
-
-              infoWindow.setPosition(marker.getPosition());
-              infoWindow.setContent(marker.title);
-              infoWindow.open(map, marker);
-         });*/
-        }
-
-        /*function attachSecretMessage(marker, secretMessage) {
-            //map.setCenter(marker.getPosition());
-            infowindow = new google.maps.InfoWindow({
-                content: secretMessage
-            });
-
-            marker.addListener('click', function() {
-              infowindow.open(map, marker);
-            });
-        }*/
-
-        function attachSecretMessage(marker, secretMessage) {
-            marker.addListener('click', function() {
-                var id = this.label;
-                console.log(id);
-                $('#myModal_'+id+'').modal('show');
-            });
-        }
-
-        /*function toggleBounce() {
-          if (marker.getAnimation() !== null) {
-            marker.setAnimation(null);
-          } else {
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-          }
-      }*/
-
-
-        function triggerMarker(i) {
-            if(i<100){
-                google.maps.event.trigger(markers_list[i], 'click', function(){
-                map.setZoom(18);
-                map.setCenter(marker.getPosition());
-                infoWindow.close();
-
-                infoWindow.setPosition(marker.getPosition());
-                infoWindow.setContent(marker.title);
-                infoWindow.open(map, marker);
-            });
-                $('#myModal').modal('show');
-            } else {
-                infoWindow.close();
-                map.setZoom(16);
-                map.panTo(c);
-            }
-
-            //console.log(markers_list[i]);
-        }
-        function pinSymbol(color) {
-          return {
-            path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z',
-            fillColor: color,
-            fillOpacity: 1,
-            strokeColor: '#000',
-            strokeWeight: 1,
-            scale: 0.5
-          };
-        }
-
-
+        window.jQuery || document.write('<script src="bootstrap/assets/js/vendor/jquery.min.js"><\/script>')
     </script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+    <div id="map"></div>
+    <div id="modals"></div>
+
+    <script src="percorsoZamboni.js"></script>
+
 
     <!-- Second Container -->
     <div class="container-fluid bg-2 text-justify" id='concept'>
-      <h3 >Concept</h3>
-      <p>Il progetto consiste in un percorso di visita multimediale ed interattivo articolato in diverse tappe lungo la strada, proposto sotto forma di un applicativo scaricabile in dispositivi mobile, eventualmente abbinabile ad un sito web.
-      Il percorso è pensato come una passeggiata lungo via Zamboni caratterizzata dall'interazione multisensoriale con la strada e i suoi luoghi a partire da contenuti di differenti tipologie (audio, video, immagini, testo, etc) fruibili all'interno dell'applicativo. Queste suggestioni guideranno il visitatore alla scopreta dei molteplici aspetti della via. </p>
-      </br>
-      <a href="#map" class="btn btn-lg btn-default">Vai</a>
+        <h3>Il progetto</h3>
+        <p>Il progetto consiste in un percorso di visita multimediale ed interattivo articolato in diverse tappe lungo la strada, proposto sotto forma di un applicativo scaricabile in dispositivi mobile, eventualmente abbinabile ad un sito web. Il percorso
+            è pensato come una passeggiata lungo via Zamboni caratterizzata dall'interazione multisensoriale con la strada e i suoi luoghi a partire da contenuti di differenti tipologie (audio, video, immagini, testo, etc) fruibili all'interno dell'applicativo.
+            Queste suggestioni guideranno il visitatore alla scopreta dei molteplici aspetti della via. </p>
+        </br>
+        <a href="#map" class="btn btn-lg btn-default">Vai</a>
     </div>
 
     <!-- Third Container -->
-    <div class="container-fluid bg-3 text-justify" id='contacts'>
+    <div class="container-fluid bg-3 text-justify" id='credits'>
         <p>Un progetto a cura del Dipartimento di Comunicazione e didattica dell’arte
-        </br>Corso di Progettazione multimediale.</p>
+            </br>Corso di Progettazione multimediale.</p>
         <p>info: @info.org</p>
     </div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCc_Nv8ldJqG-pC79H76TXUKZ5XdsOzRnI&callback=initMap"
-    async defer></script>
-  </body>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCc_Nv8ldJqG-pC79H76TXUKZ5XdsOzRnI&callback=initMap" async defer></script>
+</body>
+
 </html>
