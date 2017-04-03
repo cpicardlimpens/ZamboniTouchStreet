@@ -9,15 +9,51 @@ var current_count = 0;
 
 // HERE automatic get from wordpress
 var features = [];
-$.getJSON( "features.json", function( data ) {
-    //console.log(data);
-    for (var i=0; i< data.length; i++) {
-        features.push(data[i]);
-    }
 
-});
 
-console.log("Got it!",features);
+
+
+function initMap() {
+
+    $.getJSON( "features.json", function( data ) {
+        //console.log(data);
+        for (var i=0; i< data.length; i++) {
+            features.push(data[i]);
+        }
+        console.log("Got it!",features);
+
+        loadMap();
+
+        for (var i = 0, feature; feature = features[i]; i++) {
+            addMarker(feature);
+        }
+
+        markers_list[current_count].setAnimation(google.maps.Animation.BOUNCE);
+
+        // Modal windows
+        for (var i = 1; i <= features.length; i++) {
+            $('#modals').append('<div class="modal fade" id="myModal_' + i + '" role="dialog">' +
+                '<div class="modal-dialog">' +
+                '<div class="modal-content">' +
+                '<div class="modal-header">' +
+                '<button type="button" class="close" data-dismiss="modal">&times;</button>' +
+                '<h4 class="modal-title">Tappa ' + i + '</h4>' +
+                '</div>' +
+                '<div class="modal-body">' +
+                '<p>' + markers_list[i - 1].title + '</p>' +
+                '</div>' +
+                '<div class="modal-footer">' +
+                '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>')
+        }
+
+    });
+
+}
+
 
 function ParsingPoints(controlDiv, map) {
 
@@ -426,38 +462,7 @@ function loadMap() {
 
 }
 
-function initMap() {
 
-    loadMap();
-
-    for (var i = 0, feature; feature = features[i]; i++) {
-        addMarker(feature);
-    }
-
-    markers_list[current_count].setAnimation(google.maps.Animation.BOUNCE);
-
-    // Modal windows
-    for (var i = 1; i <= features.length; i++) {
-        $('#modals').append('<div class="modal fade" id="myModal_' + i + '" role="dialog">' +
-            '<div class="modal-dialog">' +
-            '<div class="modal-content">' +
-            '<div class="modal-header">' +
-            '<button type="button" class="close" data-dismiss="modal">&times;</button>' +
-            '<h4 class="modal-title">Tappa ' + i + '</h4>' +
-            '</div>' +
-            '<div class="modal-body">' +
-            '<p>' + markers_list[i - 1].title + '</p>' +
-            '</div>' +
-            '<div class="modal-footer">' +
-            '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
-            '</div>' +
-            '</div>' +
-            '</div>' +
-            '</div>')
-    }
-
-
-}
 
 function addMarker(f) {
     infoWindow = new google.maps.InfoWindow({
