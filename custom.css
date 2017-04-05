@@ -64,6 +64,12 @@ p {
     color: #1abc9c !important;
 }
 
+/* active button*/
+.active {
+    color: #1abc9c !important;
+    font-weight: bold;
+}
+
 /*
  * Google Maps windows
  */

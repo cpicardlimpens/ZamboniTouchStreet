@@ -1,0 +1,21 @@
+[
+    {
+        "pos_lat": 44.4944304,
+        "pos_lng": 11.346510399999943,
+        "label": "1",
+        "title": "Porta Ravegnana square and the two towers",
+        "icon": "green"
+    }, {
+        "pos_lat": 44.4955626,
+        "pos_lng": 11.348471300000028,
+        "label": "2",
+        "title": "San Donato church and Palazzo Malvasia",
+        "icon": "pink"
+    }, {
+        "pos_lat": 44.497422,
+        "pos_lng": 11.353620099999944,
+        "label": "3",
+        "title": "Pinacoteca and University Museums",
+        "icon": "blue"
+    }
+]
