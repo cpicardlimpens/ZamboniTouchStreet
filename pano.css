@@ -1,0 +1,21 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin: 40px;
+}
+
+#slider {
+    background-image: url(images/casa-isolani-residenze-di-epoca-bologna-vista-camera-abbado-580.jpg);
+}
+
+#steps_nav {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+}

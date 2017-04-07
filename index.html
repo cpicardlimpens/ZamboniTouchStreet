@@ -2,78 +2,45 @@
 <html>
 
 <head>
+    <title>Zamboni Styling Map</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!--<link rel="icon" href="../../favicon.ico">-->
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="bootstrap/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="cover.css" rel="stylesheet">
     <link href="custom.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="bootstrap/assets/js/ie-emulation-modes-warning.js"></script>
-
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-
-
-    <title>Zamboni Styling Map</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <style>
-
-
-        #concept {
-            height: 100%;
-        }
-
-        #credits {
-            height: 100%;
-        }
-
-
-    </style>
+    <![endif]-->
 </head>
-
 <body>
     <div class="site-wrapper">
         <div class="site-wrapper-inner">
             <div class="cover-container">
                 <!--language-->
                 <div style="position:fixed; right:30px; top:10px">
-                    <a href="index.html"
-                        <button type="button" class="active">
-                            <span class="lang-sm lang-lbl" lang="it"></span>IT
+                    <a href="index.html"><button type="button" class="active">
+                        <span class="lang-sm lang-lbl" lang="it"></span>IT
                         </button>
                     </a>
-                /
-                    <a href="index_en.html"
-                        <button type="button">
-                            <span class="lang-sm lang-lbl" lang="en"></span>EN
+                    /
+                    <a href="index_en.html"><button type="button">
+                        <span class="lang-sm lang-lbl" lang="en"></span>EN
                         </button>
                     </a>
                 </div>
 
                 <div class="masthead clearfix">
                     <div class="inner">
-                        <!--<h3 class="masthead-brand">Cover</h3>-->
-
                         <nav>
-
                             <ul class="nav masthead-nav">
                                 <li class="active"><a href="#">Home</a></li>
                                 <li><a href="#concept">Progetto</a></li>
@@ -83,46 +50,23 @@
                     </div>
                 </div>
 
-
                 <div class="inner cover">
                     <h1 class="cover-heading">Zamboni Touch Street</h1>
                     <p class="lead">Un percorso multimediale alla scoperta di Via Zamboni.</p>
-
-
                     <p class="lead">
                         <a href="map.html" class="btn btn-lg btn-default">Vai</a>
                     </p>
-
-
                 </div>
-
-
-
-
-                <div class="mastfoot">
+                
+                <!-- <div class="mastfoot">
                     <div class="inner">
                         <p class="p_small">Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
                     </div>
-                </div>
-
+                </div> -->
             </div>
-
-
         </div>
     </div>
-
-    <!-- Bootstrap core JavaScript
-      ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-        window.jQuery || document.write('<script src="bootstrap/assets/js/vendor/jquery.min.js"><\/script>')
-    </script>
-    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
-
-
+    
     <!-- Second Container -->
     <div class="container-fluid bg-2 text-justify" id='concept'>
         <h3>Il progetto</h3>
@@ -130,7 +74,6 @@
             è pensato come una passeggiata lungo via Zamboni caratterizzata dall'interazione multisensoriale con la strada e i suoi luoghi a partire da contenuti di differenti tipologie (audio, video, immagini, testo, etc) fruibili all'interno dell'applicativo.
             Queste suggestioni guideranno il visitatore alla scopreta dei molteplici aspetti della via. </p>
         </br>
-        <!--<a href="map.html" class="btn btn-lg btn-default">Vai</a>-->
     </div>
 
     <!-- Third Container -->
@@ -139,8 +82,13 @@
             </br>Corso di Progettazione multimediale.</p>
         <p>info: @info.org</p>
     </div>
-
-
+    
+    <!-- Bootstrap core JavaScript -->
+    <script>
+        window.jQuery || document.write('<script src="bootstrap/assets/js/vendor/jquery.min.js"><\/script>')
+    </script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
-
 </html>
