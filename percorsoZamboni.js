@@ -59,7 +59,7 @@ function initMap() {
             '<h4 class="modal-title">Zamboni Touch Street: Un percorso in 7 Tappe</h4>' +
             '</div>' +
             '<div class="modal-body">' +
-            '<iframe id="videoContent" width="100%" height="100%" src="https://www.youtube.com/embed/6ju8xO_Zvfo" frameborder="0" allowfullscreen></iframe>' + //video could a feature!!
+            '<audio controls><source src="sounds/Event2.wav" type="audio/wav"></audio>' +
             '</div>' +
             '<div class="modal-footer">' +
             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
@@ -67,15 +67,15 @@ function initMap() {
             '</div>' +
             '</div>' +
             '</div>')
-        // myModal opens as introduction 
+        // myModal opens as introduction
         $('#myModal').modal('show');
-        var url = $('#myModal iframe').attr('src');
+        var url = $('#myModal audio').attr('src');
         /* Assign empty url value to the iframe src attribute when
         modal hide, which stop the video playing */
 
         $('#myModal').on('hide.bs.modal', function(){
             //console.log('close modal '+id);
-            jQuery('#myModal iframe').removeAttr("src", jQuery('#myModal iframe').removeAttr("src"));
+            jQuery('#myModal audio').removeAttr("src", jQuery('#myModal audio').removeAttr("src"));
 
         });
 
@@ -118,10 +118,10 @@ function attachSecretMessage(marker, secretMessage) {
     marker.addListener('click', function() {
         var id = this.label;
         console.log(id);
-        $('#myModal_' + id + '').modal('show');
+        //opens another window
+        window.open('pano_'+id+'.html', "_self");
+        /*$('#myModal_' + id + '').modal('show');
         var url = $('#myModal_' + id + ' iframe').attr('src');
-        /* Assign empty url value to the iframe src attribute when
-        modal hide, which stop the video playing */
 
         $('#myModal_' + id + '').on('hide.bs.modal', function(){
             console.log('close modal '+id);
@@ -129,11 +129,9 @@ function attachSecretMessage(marker, secretMessage) {
 
         });
 
-        /* Assign the initially stored url back to the iframe src
-        attribute when modal is displayed again */
         $('#myModal_' + id + '').on('show.bs.modal', function(){
             $('#myModal_' + id + ' iframe').attr('src', url);
-        });
+        });*/
     });
 }
 
