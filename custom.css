@@ -80,3 +80,14 @@ p {
     text-transform: uppercase;
     color: #474e5d;
 }
+
+#concept {
+    height: 100%;
+}
+#credits {
+    height: 100%;
+}
+#map {
+    height: 100%;
+}
+

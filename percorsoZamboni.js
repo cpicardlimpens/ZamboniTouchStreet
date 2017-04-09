@@ -9,16 +9,22 @@ var current_count = 0;
 
 // HERE automatic get from wordpress
 var features = [];
-
+var API_BASE_URL = "http://zambonits.limpica.net/wp/wp-json/wp/v2/"
 
 
 
 function initMap() {
 
-    $.getJSON( "features.json", function( data ) {
-        //console.log(data);
+    $.getJSON( API_BASE_URL+"listings/", function( data ) {
         for (var i=0; i< data.length; i++) {
-            features.push(data[i]);
+            var listing = data[i];
+            var new_feature = {
+                "pos_lat": listing.acf.loc_lat,
+                "pos_lng": listing.acf.loc_lng,
+                "label": String(listing.id),
+                "title": listing.title.rendered,
+            }
+            features.push(new_feature);
         }
         console.log("Got it!",features);
 
@@ -84,11 +90,7 @@ function initMap() {
         $('#myModal').on('show.bs.modal', function(){
             $('#myModal_' + id + ' iframe').attr('src', url);
         });
-
     });
-
-
-
 }
 
 function addMarker(f) {
@@ -119,7 +121,7 @@ function attachSecretMessage(marker, secretMessage) {
         var id = this.label;
         console.log(id);
         //opens another window
-        window.open('pano_'+id+'.html', "_self");
+        window.open('pano.html#'+id, "_self");
         /*$('#myModal_' + id + '').modal('show');
         var url = $('#myModal_' + id + ' iframe').attr('src');
 
