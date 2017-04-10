@@ -9,6 +9,7 @@ var current_count = 0;
 
 // HERE automatic get from wordpress
 var features = [];
+var list_ = "";
 var API_BASE_URL = "http://zambonits.limpica.net/wp/wp-json/wp/v2/"
 
 
@@ -21,12 +22,15 @@ function initMap() {
             var new_feature = {
                 "pos_lat": listing.acf.loc_lat,
                 "pos_lng": listing.acf.loc_lng,
-                "label": String(listing.id),
                 "title": listing.title.rendered,
+                "listing_id": String(listing.id),
+                "label": (listing.title.rendered).substring(0, 1),
             }
+            list_ += "/"+new_feature.listing_id;
             features.push(new_feature);
         }
         console.log("Got it!",features);
+        //console.log(" // "+list_);
 
         loadMap();
 
@@ -36,59 +40,30 @@ function initMap() {
 
         markers_list[current_count].setAnimation(google.maps.Animation.BOUNCE);
 
-        // Modal windows
-        for (var i = 1; i <= features.length; i++) {
-            $('#modals').append('<div class="modal fade" id="myModal_' + i + '" role="dialog">' +
-                '<div class="modal-dialog">' +
-                '<div class="modal-content">' +
-                '<div class="modal-header">' +
-                '<button type="button" class="close" data-dismiss="modal">&times;</button>' +
-                '<h4 class="modal-title">Tappa ' + i + '</h4>' +
-                '</div>' +
-                '<div class="modal-body">' +
-                '<iframe id="videoContent" width="100%" height="100%" src="https://www.youtube.com/embed/em5PRRO-sK0" frameborder="0" allowfullscreen></iframe>' + //video could a feature!!
-                '<p>' + markers_list[i - 1].title + '</p>' +
-                '</div>' +
-                '<div class="modal-footer">' +
-                '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
-                '</div>' +
-                '</div>' +
-                '</div>' +
-                '</div>')
-        }
 
         $('#modals').append('<div class="modal fade" id="myModal" role="dialog">' +
             '<div class="modal-dialog">' +
-            '<div class="modal-content">' +
-            '<div class="modal-header">' +
+            '<div class="modal-content" style="background-color:rgba(255,255,255,0.2); top:100px">' +
+            '<div class="modal-header" style="border-bottom: 0px solid #e5e5e5">' +
             '<button type="button" class="close" data-dismiss="modal">&times;</button>' +
             '<h4 class="modal-title">Zamboni Touch Street: Un percorso in 7 Tappe</h4>' +
             '</div>' +
             '<div class="modal-body">' +
             '<audio controls><source src="sounds/Event2.wav" type="audio/wav"></audio>' +
             '</div>' +
-            '<div class="modal-footer">' +
-            '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
-            '</div>' +
-            '</div>' +
             '</div>' +
             '</div>')
-        // myModal opens as introduction
-        $('#myModal').modal('show');
-        var url = $('#myModal audio').attr('src');
-        /* Assign empty url value to the iframe src attribute when
-        modal hide, which stop the video playing */
+        // myModal opens with button 'i'
 
+        var url = $('#myModal audio').attr('src');
         $('#myModal').on('hide.bs.modal', function(){
             //console.log('close modal '+id);
             jQuery('#myModal audio').removeAttr("src", jQuery('#myModal audio').removeAttr("src"));
 
         });
 
-        /* Assign the initially stored url back to the iframe src
-        attribute when modal is displayed again */
         $('#myModal').on('show.bs.modal', function(){
-            $('#myModal_' + id + ' iframe').attr('src', url);
+            $('#myModal audio').attr('src', url);
         });
     });
 }
@@ -106,9 +81,10 @@ function addMarker(f) {
         position: new google.maps.LatLng(f.pos_lat,f.pos_lng), //f.position,
         //icon: f.icon,//pinSymbol('red')
         title: f.title,
+        listing_id: f.listing_id,
         label: f.label
     });
-    console.log(marker.title + " // "+ marker.label);
+    console.log(marker.title + " // "+ marker.label + " // " + marker.listing_id);
     markers_list.push(marker);
 
     attachSecretMessage(marker, marker.title);
@@ -118,22 +94,11 @@ function addMarker(f) {
 
 function attachSecretMessage(marker, secretMessage) {
     marker.addListener('click', function() {
-        var id = this.label;
-        console.log(id);
+        var id = this.listing_id;
+        console.log("id"+id);
         //opens another window
-        window.open('pano.html#'+id, "_self");
-        /*$('#myModal_' + id + '').modal('show');
-        var url = $('#myModal_' + id + ' iframe').attr('src');
+        window.open('pano.html#'+id,'_self');
 
-        $('#myModal_' + id + '').on('hide.bs.modal', function(){
-            console.log('close modal '+id);
-            jQuery('#myModal_' + id + ' iframe').removeAttr("src", jQuery('#myModal_' + id + ' iframe').removeAttr("src"));
-
-        });
-
-        $('#myModal_' + id + '').on('show.bs.modal', function(){
-            $('#myModal_' + id + ' iframe').attr('src', url);
-        });*/
     });
 }
 
