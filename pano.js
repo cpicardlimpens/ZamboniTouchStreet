@@ -33,11 +33,87 @@ function renderAndShowModalVideo(title, vid_src){
     });
 }
 
+function parseHash(hash) {
+  // Remove the first character (i.e. the prepended "#").
+  hash = hash.substring(1, hash.length);
+
+  // This is where we will store our properties and values.
+  var hashObj = {};
+
+  // Split on the delimiter "&" and for each key/val pair...
+  hash.split('&').forEach(function(q) {
+    // Get the property by splitting on all numbers and taking the first entry.
+    var prop = q.split(/\d/)[0];
+    // Get the numerical value by splitting on all non-numbers and taking the last entry.
+    var val_raw = q.split(/[^\d]/);
+    var val = val_raw[val_raw.length - 1]
+
+    // If the property and key are defined, add the key/val pair to our final object.
+    if (typeof prop !== 'undefined' && typeof val !== 'undefined') {
+      hashObj[prop] = +val;
+    }
+  });
+
+  return hashObj;
+}
+
+
 // ==== Main function that loads panorama ====//
 function loadPano(){
     var hash = window.location.hash;
-    console.log("hash = ",hash)
-    var id = hash.replace("#","");
+    //var v = parseHash(hash);
+    //console.log("hash = ",hash)
+    var params = hash.split('&');
+    //console.log(params[0].split('id')[1]);
+    //var id = v.id;
+    var id = (params[0].split('id'))[1];
+    var list_steps=(params[1].split('l'))[1];
+    var steps = list_steps.split('_');
+    var p; var n; var s;
+
+    for (var i=0; i< steps.length-1; i++) {
+        if(id==steps[i]){
+            s=i+1;
+            if(i==0) {
+                p=" ";
+                n=steps[i+1];
+                //console.log("previous: "+ p + " / next: "+ n);
+            } else if(i==(steps.length-2)) {
+                p=steps[i-1];
+                n=" ";
+                console.log("previous: "+ p + " / next: "+ n);
+            } else {
+                p=steps[i-1];
+                n=steps[i+1];
+                //console.log("previous: "+ p + " / next: "+ n);
+            }
+
+        }
+    }
+
+    var new_content1 = "";
+    if(p==" "){
+        new_content1 += '    '
+                    + '<a class="next" href="#id'+n+'&l'+list_steps+'">'
+                    + ''+(s+1)+' >'
+                    + '</a>';
+    } else if(n==" "){
+        new_content1 += '<a class="previous" href="#id'+p+'&l'+list_steps+'">'
+                    + '< '+(s-1)+''
+                    + '</a>';
+    } else {
+        new_content1 += '<a class="previous" href="#id'+p+'&l'+list_steps+'">'
+                    + '< '+(s-1)+''
+                    + '</a>'
+                    + ' '
+                    + '<a class="next" href="#id'+n+'&l'+list_steps+'">'
+                    + ''+(s+1)+' >'
+                    + '</a>';
+    }
+
+    $("#steps_nav" ).html(new_content1);
+    //console.log(parseHash(hash));
+
 
     // retrieve Interest points for this step
     $.getJSON( API_BASE_URL+"listings/"+id, function( data ) {

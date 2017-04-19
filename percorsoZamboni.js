@@ -6,10 +6,10 @@ var markers_list = [];
 var c;
 var count = -1;
 var current_count = 0;
+var list_steps = '';
 
 // HERE automatic get from wordpress
 var features = [];
-var list_ = "";
 var API_BASE_URL = "http://zambonits.limpica.net/wp/wp-json/wp/v2/"
 
 
@@ -26,11 +26,15 @@ function initMap() {
                 "listing_id": String(listing.id),
                 "label": (listing.title.rendered).substring(0, 1),
             }
-            list_ += "/"+new_feature.listing_id;
             features.push(new_feature);
         }
-        console.log("Got it!",features);
-        //console.log(" // "+list_);
+        // Sorting the stages according the label
+        features.sort(function(a, b){
+            var a1= a.label, b1= b.label;
+            if(a1== b1) return 0;
+            return a1> b1? 1: -1;
+        });
+        console.log("Got it!",features.length);
 
         loadMap();
 
@@ -85,6 +89,9 @@ function addMarker(f) {
         label: f.label
     });
     console.log(marker.title + " // "+ marker.label + " // " + marker.listing_id);
+    //console.log(marker.listing_id);
+    list_steps+=marker.listing_id;
+    list_steps+="_";
     markers_list.push(marker);
 
     attachSecretMessage(marker, marker.title);
@@ -95,9 +102,18 @@ function addMarker(f) {
 function attachSecretMessage(marker, secretMessage) {
     marker.addListener('click', function() {
         var id = this.listing_id;
+        var label = this.label;
         console.log("id"+id);
+        console.log(features[0].listing_id);
         //opens another window
-        window.open('pano.html#'+id,'_self');
+        /*if(label==1) {
+            window.open('pano.html#id'+id+'&p'+'&n'+features[label].listing_id,'_self');
+        } else if(label==8){
+            window.open('pano.html#id'+id+'&p'+features[label-2]+'&n ','_self');
+        } else {
+            window.open('pano.html#id'+id+'&p'+features[label-2]+'&n'+features[label],'_self');
+        }*/
+        window.open('pano.html#id'+id+'&l'+list_steps,'_self');
 
     });
 }
