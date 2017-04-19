@@ -1,3 +1,10 @@
+html, body {
+   height: 100%;
+   width: 100%;
+   margin: 0;
+   padding: 0;
+}
+
 body {
     font-family: sans-serif;
     margin: 0;
@@ -18,4 +25,16 @@ h1 {
     right: 20px;
     font-size: 1.2em;
     font-weight: bold;
+}
+
+#panorama{
+    height: 700px;
+}
+
+/*#panorama img{
+    height: 600px;   
+}*/
+
+.panomap area{
+    color: rgba(255,0,0,.3);
 }

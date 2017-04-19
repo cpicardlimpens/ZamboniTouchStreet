@@ -16,7 +16,7 @@
     <link href="custom.css" rel="stylesheet">
     <link href="pano.css" rel="stylesheet">
     <!-- <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"> -->
-    <link href="panorama-slider.min.css" rel="stylesheet">
+    <link href="panorama_viewer/panorama_viewer.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -27,30 +27,30 @@
 <body>
     <div id="modals"></div>
 
-    <div id="slider">
+    <!-- panorama image -->
+    <div id="panorama" class="panorama">
+        <img src="images/panorama-bologna2.jpg" usemap="#panomap">
     </div>
-
+    <map class="panomap" name="panomap">
+        <!-- <area shape="rect" coords="0,0,82,126" href="sun.htm" alt="Sun"> -->
+        <area shape="circle" coords="100,100,100" href="#pi01" data-target="#pi01" alt="pi01">
+        <area shape="circle" coords="4000,1000,100" href="#pi02" data-target="#pi02" alt="pi02">
+        <area shape="circle" coords="8000,1000,100" href="#pi03" data-target="#pi03" alt="pi03">
+    </map>
+    <div id="interest_points">
+        
+    </div>
+    <!-- close button -->
     <div style="position:fixed; right: 5px; top :-5px">
         <div style="font-size:30px; font-family:Verdana,sans-serif">
             <a href="map.html" style="color:black; text-shadow: rgba(0,0,0,0.8);">X</a>
         </div>
     </div>
+    
+    <!-- info modal container -->
     <div style="position:fixed; left: 5px; bottom :10px">
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="font-style: italic;">i</button>
     </div>
-
-<!--
-    <div id="steps_nav">
-        step
-        <a class="previous" href="#9">
-            9
-        </a>
-        |
-        <a class="next" href="#26">
-            26
-        </a>
-    </div>
--->
 
     <!-- Bootstrap core JavaScript -->
     <script>
@@ -59,8 +59,10 @@
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="panorama-slider.min.js"></script>
+    <!-- <script src="panorama-slider.min.js"></script> -->
     <!-- Application JS -->
+    <script src="jquery.imagemapster.min.js"></script>
+    <script src="panorama_viewer/jquery.panorama_viewer.min.js"></script>
     <script src="pano.js"></script>
 </body>
 
