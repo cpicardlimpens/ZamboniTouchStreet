@@ -27,11 +27,22 @@ h1 {
     font-weight: bold;
 }
 
+.interest_points{
+    width:12000px;
+    height: 100%;
+    position: relative;
+}
+
+.ipoint{
+    position: absolute;
+}
+
 .pano {
 	width: 100%;
 	height: 100%;
 	margin: 0 auto;
 	cursor: move;
+    overflow: hidden;
 }
 .pano .controls {
 	position: relative;

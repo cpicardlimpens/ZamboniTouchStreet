@@ -26,13 +26,25 @@ https://seancoyne.github.io/pano
 		var $pano = this;
 		var $leftCtrl = $pano.find(".controls").find("a.left");
 		var $rightCtrl = $pano.find(".controls").find("a.right");
-		
+		var $interestPoints = $pano.find(".ipoint");
+        
 		var getImageWidth = function(imgSrc) {
 			var img = new Image();
 			img.src = imgSrc;
 			return img.width;
 		};
 		
+        var moveInterestPointsBy = function(distance){
+            // console.log("interestPoints tp be moved", $interestPoints)
+            $interestPoints.each(function(index, ip){
+                // console.log("within loop ip = ", ip);
+                current_left = parseInt($(ip).css('left').replace("px", ""));
+                // console.log("current_left = ", current_left);
+                // console.log("current_left + distance = ", current_left + distance);
+                $(ip).css('left', current_left + distance+'px');
+            })
+        }
+        
 		var moveBackgroundTo = function(newPos, duration, cb) {		
 			duration = duration || 0;
 			cb = cb || function(){};
@@ -45,6 +57,7 @@ https://seancoyne.github.io/pano
 			duration = duration || 0;
 			cb = cb || function(){};
 			moveBackgroundTo(getCurrentPosition() + distance, duration, cb);
+            moveInterestPointsBy(distance);
 		};
 		
 		var getCurrentPosition = function() {
