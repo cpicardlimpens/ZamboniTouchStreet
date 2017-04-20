@@ -33,14 +33,24 @@ https://seancoyne.github.io/pano
 			img.src = imgSrc;
 			return img.width;
 		};
-		
+        var getImageRatio = function(imgSrc) {
+			var img = new Image();
+			img.src = imgSrc;
+            panoHeight = parseInt($pano.css("height").replace("px", ""));
+            ratio = (panoHeight*1.0)/img.height;
+			return ratio;
+		};
+        
         var moveInterestPointsBy = function(distance){
-            // console.log("interestPoints tp be moved", $interestPoints)
+            var $scaledImageWidth = getImageWidth(options.img) * getImageRatio(options.img);
             $interestPoints.each(function(index, ip){
-                // console.log("within loop ip = ", ip);
                 current_left = parseInt($(ip).css('left').replace("px", ""));
-                // console.log("current_left = ", current_left);
-                // console.log("current_left + distance = ", current_left + distance);
+                ip_width = parseInt($(ip).css('width').replace("px", ""));
+                if (current_left > $scaledImageWidth) {
+                    current_left = current_left - $scaledImageWidth;
+                } else if (current_left < -1.0*ip_width ) {
+                    current_left = current_left + $scaledImageWidth;
+                }; 
                 $(ip).css('left', current_left + distance+'px');
             })
         }

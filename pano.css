@@ -47,6 +47,7 @@ h1 {
 .pano .controls {
 	position: relative;
 	top: 40%;
+    z-index: 1000;
 }
 .pano .controls a {
 	position: absolute;

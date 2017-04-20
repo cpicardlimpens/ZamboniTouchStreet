@@ -34,6 +34,7 @@ function loadPano(){
 
     // retrieve Interest points for this step
     $.getJSON( API_BASE_URL+"listings/"+id, function( data ) {
+        console.log("got listing details", data);
         var interestPoints = data.acf.pint;
         // render template >>> FIXME use real template here
         var new_content = "<div>";
@@ -47,7 +48,6 @@ function loadPano(){
         };
         new_content += "</div>";
         // replace panorama image and render it with map
-        console.log("setting up panorama_viewer", $(".panorama")) ;
         $("#panorama").pano({
             img: "images/panorama-bologna2.jpg"
         });
