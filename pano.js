@@ -1,8 +1,6 @@
 // Page-scope variables
 var API_BASE_URL = "http://zambonits.limpica.net/wp/wp-json/wp/v2/"
 
-
-
 function renderAndShowModalVideo(title, vid_src){
 
     $('#modals').html('<div class="modal fade" id="myModal" role="dialog">' +
@@ -28,26 +26,6 @@ function renderAndShowModalVideo(title, vid_src){
     });
 }
 
-function finishSetup() {
-    var image = $(this),
-        imgWidth = image.width(),
-        imgHeight = image.height(),
-        maxWidth = $(window).width(),
-        maxHeight = $(window).height(),
-        newWidth=0,
-        newHeight=0;
-    newWidth = (imgWidth * maxHeight ) / imgHeight;
-    image.mapster('resize',newWidth,maxHeight,0);
-    $('area').mapster('select');
-    $("#mapster_wrap_0").panorama_viewer({
-        repeat: true,              
-        direction: "horizontal",    
-        animationTime: 700, 
-        easing: "ease-out", 
-        overlay: true  
-        });
-}
-
 // ==== Main function that loads panorama ====//
 function loadPano(){
     var hash = window.location.hash;
@@ -69,15 +47,11 @@ function loadPano(){
         };
         new_content += "</div>";
         // replace panorama image and render it with map
-        //$('img').mapster({mapScale:true, onConfigured: finishSetup});
-        $("#panorama").panorama_viewer({
-            repeat: true,              
-            direction: "horizontal",    
-            animationTime: 700, 
-            easing: "ease-out", 
-            overlay: true  
-            });
-    
+        console.log("setting up panorama_viewer", $(".panorama")) ;
+        $("#panorama").pano({
+            img: "images/panorama-bologna2.jpg"
+        });
+            
         // render and show modal (see pano_1.js)
         video_src = "https://www.youtube.com/embed/em5PRRO-sK0";
         renderAndShowModalVideo(data.title.rendered, video_src);
