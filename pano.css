@@ -18,6 +18,9 @@ h1 {
 #slider {
     background-image: url(images/casa-isolani-residenze-di-epoca-bologna-vista-camera-abbado-580.jpg);
 }
+#panorama {
+    height: 100%;
+}
 
 #steps_nav {
     position: fixed;
@@ -35,6 +38,7 @@ h1 {
 
 .ipoint{
     position: absolute;
+    display: block;
 }
 
 .pano {

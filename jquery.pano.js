@@ -26,7 +26,6 @@ https://seancoyne.github.io/pano
 		var $pano = this;
 		var $leftCtrl = $pano.find(".controls").find("a.left");
 		var $rightCtrl = $pano.find(".controls").find("a.right");
-		var $interestPoints = $pano.find(".ipoint");
         
 		var getImageWidth = function(imgSrc) {
 			var img = new Image();
@@ -43,7 +42,7 @@ https://seancoyne.github.io/pano
         
         var moveInterestPointsBy = function(distance){
             var $scaledImageWidth = getImageWidth(options.img) * getImageRatio(options.img);
-            $interestPoints.each(function(index, ip){
+            $pano.find(".ipoint").each(function(index, ip){
                 current_left = parseInt($(ip).css('left').replace("px", ""));
                 ip_width = parseInt($(ip).css('width').replace("px", ""));
                 if (current_left > $scaledImageWidth) {
@@ -119,7 +118,7 @@ https://seancoyne.github.io/pano
 			"background-size": "auto 100%",
 			"background-repeat": "repeat-x"
 		});
-		
+
 		// set the initial position in pixels (easier math)
 		var halfWidth = (getImageWidth(options.img) / 2);
 		moveBackgroundTo(halfWidth);

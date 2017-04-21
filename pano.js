@@ -26,33 +26,102 @@ function renderAndShowModalVideo(title, vid_src){
     });
 }
 
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 // ==== Main function that loads panorama ====//
 function loadPano(){
-    var hash = window.location.hash;
-    console.log("hash = ",hash)
-    var id = hash.replace("#","");
+    var id = getParameterByName('id');
+    var list_steps = getParameterByName('list');
 
+    var steps = list_steps.split('_');
+    var p; var n; var s;
+    for (var i=0; i< steps.length-1; i++) {
+        if(id==steps[i]){
+            s=i+1;
+            if(i==0) {
+                p=" ";
+                n=steps[i+1];
+                //console.log("previous: "+ p + " / next: "+ n);
+            } else if(i==(steps.length-2)) {
+                p=steps[i-1];
+                n=" ";
+                console.log("previous: "+ p + " / next: "+ n);
+            } else {
+                p=steps[i-1];
+                n=steps[i+1];
+                //console.log("previous: "+ p + " / next: "+ n);
+            }
+
+        }
+    }
+    // FIXME : replace with mustache template
+    var new_content1 = "";
+    if(p==" "){
+        new_content1 += '    '
+                    + '<a class="next" href="?id='+n+'&list='+list_steps+'">'
+                    + ''+(s+1)+' >'
+                    + '</a>';
+    } else if(n==" "){
+        new_content1 += '<a class="previous" href="?id='+p+'&list='+list_steps+'">'
+                    + '< '+(s-1)+''
+                    + '</a>';
+    } else {
+        new_content1 += '<a class="previous" href="?id='+p+'&list='+list_steps+'">'
+                    + '< '+(s-1)+''
+                    + '</a>'
+                    + ' '
+                    + '<a class="next" href="?id='+n+'&list='+list_steps+'">'
+                    + ''+(s+1)+' >'
+                    + '</a>';
+    }
+    $("#steps_nav" ).html(new_content1);
+    
     // retrieve Interest points for this step
     $.getJSON( API_BASE_URL+"listings/"+id, function( data ) {
         console.log("got listing details", data);
         var interestPoints = data.acf.pint;
-        // render template >>> FIXME use real template here
-        var new_content = "<div>";
-        var pos_x = 0;
-        for (var i=0; i< interestPoints.length; i++) {
-            var interestPoint = interestPoints[i];
-            new_content += "<div>"
-                        +      "<h1>"+interestPoint.post_title+"</h1>"
-                        + "</div>";
-            pos_x+=1000;// position of the interest point, from the json??
-        };
-        new_content += "</div>";
-        // replace panorama image and render it with map
+        
+        // load panorama image
         $("#panorama").pano({
-            img: "images/panorama-bologna2.jpg"
+            img: data.acf.panoramica.url
         });
-            
-        // render and show modal (see pano_1.js)
+        
+        // adapt annotations container with image width and height 
+            /* 
+            FIXME-1 : on mobile, if device is tilted, this has to be changed, since the image ratio then changes!! 
+            FIXME-2 : lors d'un tilt, on aura aussi un problème pour replacer les points car le placement en pourcentage est modifié dès qu'on drag le panorama (cf jquery.pano.js moveInterestPointsBy ) =>  SOL = 
+            1. faire une fonction qui replace tous les points en fonction de (position en %, scaledImageWidth, position du bkground) 
+            2. utiliser les data-left et data-top (cf template des annotation) 
+            */
+        var ratio = parseInt($('#panorama').css("height").replace("px", ""))*1.0/data.acf.panoramica.height;
+        var scaledImageWidth = data.acf.panoramica.width * ratio;
+        $('.interest_points').css('width', scaledImageWidth );
+        
+        // go through all ip and add annotations and modal window
+        for (var i = 0; i < interestPoints.length; i++) {
+            ip = interestPoints[i];
+            $.getJSON( API_BASE_URL+"posts/"+ip.ID, function( data ) {
+                // append interest points annotations
+                $.get('templates/interest_points_annotation.mst', function(template) {
+                    console.log("ip data", data);
+                    var rendered = Mustache.render(template, data);
+                    $('.interest_points').append(rendered);
+                });
+                // render modal window
+            });
+        };
+        
+        
+        
+        // render and show info modal (see pano_1.js)
         video_src = "https://www.youtube.com/embed/em5PRRO-sK0";
         renderAndShowModalVideo(data.title.rendered, video_src);
 
@@ -63,6 +132,7 @@ function loadPano(){
 $( document ).ready(function() {
     loadPano();
     $(window).on('hashchange', function() {
+        console.log("Hash has changed!");
         loadPano();
     });
 });
