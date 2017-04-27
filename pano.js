@@ -83,7 +83,7 @@ function loadPano(){
                     + '</a>';
     }
     $("#steps_nav" ).html(new_content1);
-    
+    console.log("before loading listing details");
     // retrieve Interest points for this step
     $.getJSON( API_BASE_URL+"listings/"+id, function( data ) {
         console.log("got listing details", data);
@@ -119,8 +119,6 @@ function loadPano(){
             });
         };
         
-        
-        
         // render and show info modal (see pano_1.js)
         video_src = "https://www.youtube.com/embed/em5PRRO-sK0";
         renderAndShowModalVideo(data.title.rendered, video_src);
@@ -130,9 +128,11 @@ function loadPano(){
 
 // ==== Execution on document ready and hashchange ====//
 $( document ).ready(function() {
+    console.log("initial loading");
     loadPano();
+    // FIXME : we no longer monitor hashchange, but we should make sure document gets reloaded on query parameters change (as is the case on FF/Linux+Mac)
     $(window).on('hashchange', function() {
         console.log("Hash has changed!");
-        loadPano();
+        //loadPano();
     });
 });
