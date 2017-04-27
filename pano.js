@@ -37,6 +37,30 @@ function getParameterByName(name, url) {
 }
 
 // ==== Main function that loads panorama ====//
+
+
+// Now watch position change
+/*
+var identifier = window.navigator.geolocation.watchPosition(function(position) {
+    pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+    };
+
+    if((Oldpos.lat != pos.lat && Oldpos.lng != pos.lng) || Oldpos.lat==0) {
+
+        Oldpos = pos;
+        //console.log("new: " + pos+" / old: "+Oldpos);
+        console.log(" Position change ! lat: "+pos.lat+" lng: "+pos.lng);
+
+        compute_distance_and_set_position(pos);
+    } else {
+        console.log("no update position");
+    }
+
+
+}*/
+
 function loadPano(){
     var id = getParameterByName('id');
     var list_steps = getParameterByName('list');
@@ -88,23 +112,40 @@ function loadPano(){
     $.getJSON( API_BASE_URL+"listings/"+id, function( data ) {
         console.log("got listing details", data);
         var interestPoints = data.acf.pint;
-        
+
         // load panorama image
         $("#panorama").pano({
             img: data.acf.panoramica.url
         });
-        
-        // adapt annotations container with image width and height 
-            /* 
-            FIXME-1 : on mobile, if device is tilted, this has to be changed, since the image ratio then changes!! 
-            FIXME-2 : lors d'un tilt, on aura aussi un problème pour replacer les points car le placement en pourcentage est modifié dès qu'on drag le panorama (cf jquery.pano.js moveInterestPointsBy ) =>  SOL = 
-            1. faire une fonction qui replace tous les points en fonction de (position en %, scaledImageWidth, position du bkground) 
-            2. utiliser les data-left et data-top (cf template des annotation) 
+
+        // adapt annotations container with image width and height
+            /*
+            FIXME-1 : on mobile, if device is tilted, this has to be changed, since the image ratio then changes!!
+            FIXME-2 : lors d'un tilt, on aura aussi un problème pour replacer les points car le placement en pourcentage est modifié dès qu'on drag le panorama (cf jquery.pano.js moveInterestPointsBy ) =>  SOL =
+            1. faire une fonction qui replace tous les points en fonction de (position en %, scaledImageWidth, position du bkground)
+            2. utiliser les data-left et data-top (cf template des annotation)
             */
         var ratio = parseInt($('#panorama').css("height").replace("px", ""))*1.0/data.acf.panoramica.height;
+        console.log("ratio "+ratio);
         var scaledImageWidth = data.acf.panoramica.width * ratio;
         $('.interest_points').css('width', scaledImageWidth );
-        
+        // Listen for resize changes
+        window.addEventListener("resize", function() {
+        	// Get screen size (inner/outerWidth, inner/outerHeight)
+            ratio = parseInt($('#panorama').css("height").replace("px", ""))*1.0/data.acf.panoramica.height;
+            scaledImageWidth = data.acf.panoramica.width * ratio;
+            var delta = parseInt($('#panorama').css('background-position-x').replace("px", ""));
+            console.log(delta);
+            $('.interest_points').css('width', scaledImageWidth);
+            $(panorama).find(".ipoint").each(function(index, ip){
+                current_left = parseInt($(ip).attr('data-left').replace("%", ""))*scaledImageWidth/100;
+                console.log("cur-left " + current_left);
+                $(ip).css('left', current_left +delta +'px');
+            })
+            console.log("ALERT");
+            console.log("ratio changed: "+ratio);
+        }, false);
+
         // go through all ip and add annotations and modal window
         for (var i = 0; i < interestPoints.length; i++) {
             ip = interestPoints[i];
@@ -116,9 +157,10 @@ function loadPano(){
                     $('.interest_points').append(rendered);
                 });
                 // render modal window
+
             });
         };
-        
+
         // render and show info modal (see pano_1.js)
         video_src = "https://www.youtube.com/embed/em5PRRO-sK0";
         renderAndShowModalVideo(data.title.rendered, video_src);

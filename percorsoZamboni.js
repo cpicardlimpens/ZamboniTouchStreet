@@ -75,11 +75,6 @@ function initMap() {
                       '<p>Siete ' + Math.round(distance) + ' metri lontani da Le due Torri</p>'+
                   '</div>';
             infoWindow_.setContent(content);
-            //map.setCenter(markers_list[i_torri]);
-            //var bounds = new google.maps.LatLngBounds(loc1, loc2);
-        //map.fitBounds(bounds);
-            //map.setZoom(14);
-
 
         };
         if (geolocation) {
