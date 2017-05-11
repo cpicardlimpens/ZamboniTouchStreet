@@ -165,10 +165,8 @@ function loadPano(){
                     var rendered = Mustache.render(template, data);
                     $('.interest_points').append(rendered);
 
-                    // render modal window
-                    console.log('title',data.title.rendered);
-                    console.log(data.acf.annedoti_e_approfondimenti_i);
-                    $('#modals').append('<div class="modal fade" id="pimod'+id+'" role="dialog">' +
+
+                    $('#modals').append('<div class="modal fade" id="pi'+data.id+'" role="dialog">' +
                         '<div class="modal-dialog">' +
                         '<div class="modal-content" style="background-color:rgba(255,255,255,0.2); top:100px">' +
                         '<div class="modal-header" style="border-bottom: 0px solid #e5e5e5">' +
@@ -190,21 +188,21 @@ function loadPano(){
                         '</div>' +
                         '</div>')
 
-                        var url = $('#pimod'+id+' audio').attr('src');
-                        $('#pimod'+id+'').on('hide.bs.modal', function(){
-                            jQuery('#pimod'+id+' audio').removeAttr("src", jQuery('#pimod'+id+' audio').removeAttr("src"));
+                        var url = $('#pi'+data.id+' audio').attr('src');
+                        $("#pi"+data.id).on('hide.bs.modal', function(){
+                            jQuery('#pi'+data.id+' audio').removeAttr("src", jQuery('#pi'+data.id+' audio').removeAttr("src"));
                         });
 
-                        $('#pimod'+id+'').on('show.bs.modal', function(){
-                            $('#pimod'+id+' audio').attr('src', url);
+                        $("#pi"+data.id).on('show.bs.modal', function(){
+                            $('#pi'+data.id+' audio').attr('src', url);
                         });
 
                         var pi_ = 'pi'+data.id+'.ipoint';
-                        console.log(pi_);
+
                         $('#'+pi_).click(function() {
+                            // render modal window
                             console.log('click!!');
-                            var pimod_ = "pimod"+id;
-                            $("#"+pimod_).modal();
+                            $("#pi"+data.id).modal();
                         });
 
 
