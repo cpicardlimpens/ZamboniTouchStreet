@@ -1,7 +1,8 @@
 // Page-scope variables
 var API_BASE_URL = "http://zambonits.limpica.net/wp/wp-json/wp/v2/"
 
-function renderAndShowModalVideo(title, vid_src){
+/*Introduction to the step*/
+function renderAndShowIntroModalVideo(title, vid_src){
 
     $('#modals').html('<div class="modal fade" id="myModal" role="dialog">' +
                         '<div class="modal-dialog">' +
@@ -25,6 +26,14 @@ function renderAndShowModalVideo(title, vid_src){
         $('#myModal iframe').attr('src', url);
     });
 }
+
+/* Interest Point*/
+function renderAndShowInterestPointModal(){
+    ///???
+
+}
+
+
 
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -148,22 +157,68 @@ function loadPano(){
 
         // go through all ip and add annotations and modal window
         for (var i = 0; i < interestPoints.length; i++) {
-            ip = interestPoints[i];
+            ip = interestPoints[i]; var index=i;
             $.getJSON( API_BASE_URL+"posts/"+ip.ID, function( data ) {
                 // append interest points annotations
                 $.get('templates/interest_points_annotation.mst', function(template) {
                     console.log("ip data", data);
                     var rendered = Mustache.render(template, data);
                     $('.interest_points').append(rendered);
+
+                    // render modal window
+                    console.log('title',data.title.rendered);
+                    console.log(data.acf.annedoti_e_approfondimenti_i);
+                    $('#modals').append('<div class="modal fade" id="pimod'+id+'" role="dialog">' +
+                        '<div class="modal-dialog">' +
+                        '<div class="modal-content" style="background-color:rgba(255,255,255,0.2); top:100px">' +
+                        '<div class="modal-header" style="border-bottom: 0px solid #e5e5e5">' +
+                        '<button type="button" class="close" data-dismiss="modal">&times;</button>' +
+                        '<h4 class="modal-title">'+data.title.rendered+'</h4>' +
+                        '</div>' +
+                        '<div class="modal-body">' +
+                        '<p>'+data.acf.intro_storia_e_architettura_t+'</p>'+
+                        '<audio controls><source src="'+data.acf.intro_storia_e_architettura_a.url+'" type="audio/wav"></audio>' +
+                        '<br>'+
+                        '<p><span style="text-decoration: underline;">Approfondimenti</span>: '+data.acf.annedoti_e_approfondimenti_t+'</p>'+
+                        '<img src="'+data.acf.annedoti_e_approfondimenti_i.url+'" class="img-responsive" alt="" >'+
+                        '<br>'+
+                        '<audio controls><source src="'+data.acf.annedoti_e_approfondimenti_a.url+'" type="audio/wav"></audio>' +
+                        '<br>'+
+                        '<p><span style="text-decoration: underline;">Esperienza</span>: '+data.acf.esperienza_t+'</p>'+
+                        '<audio controls><source src="'+data.acf.esperienza_a.url+'" type="audio/wav"></audio>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>')
+
+                        var url = $('#pimod'+id+' audio').attr('src');
+                        $('#pimod'+id+'').on('hide.bs.modal', function(){
+                            jQuery('#pimod'+id+' audio').removeAttr("src", jQuery('#pimod'+id+' audio').removeAttr("src"));
+                        });
+
+                        $('#pimod'+id+'').on('show.bs.modal', function(){
+                            $('#pimod'+id+' audio').attr('src', url);
+                        });
+
+                        var pi_ = 'pi'+data.id+'.ipoint';
+                        console.log(pi_);
+                        $('#'+pi_).click(function() {
+                            console.log('click!!');
+                            var pimod_ = "pimod"+id;
+                            $("#"+pimod_).modal();
+                        });
+
+
                 });
-                // render modal window
+                var contents = data.acf;
+                console.log("got interest point details", contents);
+
 
             });
         };
 
         // render and show info modal (see pano_1.js)
         video_src = "https://www.youtube.com/embed/em5PRRO-sK0";
-        renderAndShowModalVideo(data.title.rendered, video_src);
+        renderAndShowIntroModalVideo(data.title.rendered, video_src);
 
     });
 };
@@ -172,6 +227,9 @@ function loadPano(){
 $( document ).ready(function() {
     console.log("initial loading");
     loadPano();
+
+
+
     // FIXME : we no longer monitor hashchange, but we should make sure document gets reloaded on query parameters change (as is the case on FF/Linux+Mac)
     $(window).on('hashchange', function() {
         console.log("Hash has changed!");
