@@ -134,11 +134,14 @@ function loadPano(){
             1. faire une fonction qui replace tous les points en fonction de (position en %, scaledImageWidth, position du bkground)
             2. utiliser les data-left et data-top (cf template des annotation)
             */
-        var ratio = parseInt($('#panorama').css("height").replace("px", ""))*1.0/data.acf.panoramica.height;
+            var ratio = parseInt($('#panorama').css("height").replace("px", ""))*1.0/data.acf.panoramica.height;
         console.log("ratio "+ratio);
         var scaledImageWidth = data.acf.panoramica.width * ratio;
+        console.log("background-position: "+ $('#panorama').css("background-position"));
+        // BE sure that when switching from map to panorama the interest points remain well located
+        if($('#panorama').css("background-position")!=0) $('#panorama').css('background-position',0);
         $('.interest_points').css('width', scaledImageWidth );
-        // Listen for resize changes
+        // Listen for resize changes (landscape to portrait and vice versa)
         window.addEventListener("resize", function() {
         	// Get screen size (inner/outerWidth, inner/outerHeight)
             ratio = parseInt($('#panorama').css("height").replace("px", ""))*1.0/data.acf.panoramica.height;
@@ -159,31 +162,54 @@ function loadPano(){
         for (var i = 0; i < interestPoints.length; i++) {
             ip = interestPoints[i]; var index=i;
             $.getJSON( API_BASE_URL+"posts/"+ip.ID, function( data ) {
+                console.log(API_BASE_URL+"posts/"+ip.ID);
+                //remove "false" value
+                /*var original = {a:1, b:2, c:3};
+                var squaredValues = $.map(original, function (value, key) {
+                    return [key, value * value];
+                });
+                original=squaredValues;console.log("r"+original);
+                $.each(original, function(value, key) { this[key] = value +3;  }); console.log("r  "+ original)*/
+
+                $.each( data.acf, function(key,value  ) {
+
+                    if(value==false) {
+                        //console.log(ip.ID+" - catégories vides:"+key);
+                        //$.extend("bbbb");
+                        console.log(ip.ID+" - catégories vides:"+key+"/ value: "+value);
+                    }
+                    //console.log( key + "///: " + value );
+                });
                 // append interest points annotations
                 $.get('templates/interest_points_annotation.mst', function(template) {
                     console.log("ip data", data);
+
                     var rendered = Mustache.render(template, data);
                     $('.interest_points').append(rendered);
 
-
+                    //todo: comment faire si le champ acf est vide??
                     $('#modals').append('<div class="modal fade" id="pi'+data.id+'" role="dialog">' +
                         '<div class="modal-dialog">' +
                         '<div class="modal-content" style="background-color:rgba(255,255,255,0.2); top:100px">' +
                         '<div class="modal-header" style="border-bottom: 0px solid #e5e5e5">' +
                         '<button type="button" class="close" data-dismiss="modal">&times;</button>' +
-                        '<h4 class="modal-title">'+data.title.rendered+'</h4>' +
+                        '<h3 class="modal-title">'+data.title.rendered+'</h3>' +
                         '</div>' +
                         '<div class="modal-body">' +
-                        '<p>'+data.acf.intro_storia_e_architettura_t+'</p>'+
-                        '<audio controls><source src="'+data.acf.intro_storia_e_architettura_a.url+'" type="audio/wav"></audio>' +
+                        '<p>'+data.acf.scheda_tecnica+'</p>'+
                         '<br>'+
-                        '<p><span style="text-decoration: underline;">Approfondimenti</span>: '+data.acf.annedoti_e_approfondimenti_t+'</p>'+
-                        '<img src="'+data.acf.annedoti_e_approfondimenti_i.url+'" class="img-responsive" alt="" >'+
+                        '<p>'+data.acf.intro_t+'</p>'+
                         '<br>'+
-                        '<audio controls><source src="'+data.acf.annedoti_e_approfondimenti_a.url+'" type="audio/wav"></audio>' +
+                        '<h4 class="modal-title">Approfondimenti</h4>' +
+                        (data.acf.desc_gnal_a !=false ? '<audio controls><source src="'+data.acf.desc_gnal_a.url+'" type="audio/wav"></audio>': '') +
+                        '<img src="'+data.acf.dentro_i1.url+'" class="img-responsive" alt="" >'+
+                        '<img src="'+data.acf.dentro_i2.url+'" class="img-responsive" alt="" >'+
+                        '<img src="'+data.acf.dentro_i3.url+'" class="img-responsive" alt="" >'+
                         '<br>'+
-                        '<p><span style="text-decoration: underline;">Esperienza</span>: '+data.acf.esperienza_t+'</p>'+
-                        '<audio controls><source src="'+data.acf.esperienza_a.url+'" type="audio/wav"></audio>' +
+                        '<h4 class="modal-title">Esperienza</h4>' +
+                        '<p>'+data.acf.esperienza_t+'</p>'+
+                        (data.acf.esperienza_a !=false ? '<audio controls><source src="'+data.acf.esperienza_a.url+'" type="audio/wav"></audio>': '') +
+                        '<img src="'+data.acf.esperienza_i.url+'" class="img-responsive" alt="" >'+
                         '</div>' +
                         '</div>' +
                         '</div>')
@@ -209,6 +235,11 @@ function loadPano(){
                 });
                 var contents = data.acf;
                 console.log("got interest point details", contents);
+                //console.log("got interest point details: ", contents.size);
+                for (var j=0; j< contents.length-1; j++) {
+                    console.log(j+" "+contents[j]);
+                }
+
 
 
             });
