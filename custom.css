@@ -6,6 +6,11 @@ p {
     font-size: 14px;
 }
 
+.p_modal {
+    font-size: 14px;
+    text-align: justify;
+}
+
 .p_small {
     font-size: 10px;
 }
@@ -90,4 +95,3 @@ p {
 #map {
     height: 100%;
 }
-

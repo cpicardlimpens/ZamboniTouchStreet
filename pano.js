@@ -196,18 +196,17 @@ function loadPano(){
                         '<h3 class="modal-title">'+data.title.rendered+'</h3>' +
                         '</div>' +
                         '<div class="modal-body">' +
-                        '<p>'+data.acf.scheda_tecnica+'</p>'+
+                        '<div class="p_modal">'+data.acf.scheda_tecnica+'</div>'+
                         '<br>'+
-                        '<p>'+data.acf.intro_t+'</p>'+
+                        '<div class="p_modal">'+data.acf.intro_t+'</div>'+
                         '<br>'+
-                        '<h4 class="modal-title">Approfondimenti</h4>' +
                         (data.acf.desc_gnal_a !=false ? '<audio controls><source src="'+data.acf.desc_gnal_a.url+'" type="audio/wav"></audio>': '') +
                         '<img src="'+data.acf.dentro_i1.url+'" class="img-responsive" alt="" >'+
                         '<img src="'+data.acf.dentro_i2.url+'" class="img-responsive" alt="" >'+
                         '<img src="'+data.acf.dentro_i3.url+'" class="img-responsive" alt="" >'+
                         '<br>'+
                         '<h4 class="modal-title">Esperienza</h4>' +
-                        '<p>'+data.acf.esperienza_t+'</p>'+
+                        '<div class="p_modal">'+data.acf.esperienza_t+'</div>'+
                         (data.acf.esperienza_a !=false ? '<audio controls><source src="'+data.acf.esperienza_a.url+'" type="audio/wav"></audio>': '') +
                         '<img src="'+data.acf.esperienza_i.url+'" class="img-responsive" alt="" >'+
                         '</div>' +
