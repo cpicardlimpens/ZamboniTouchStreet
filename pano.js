@@ -201,14 +201,14 @@ function loadPano(){
                         '<div class="p_modal">'+data.acf.intro_t+'</div>'+
                         '<br>'+
                         (data.acf.desc_gnal_a !=false ? '<audio controls><source src="'+data.acf.desc_gnal_a.url+'" type="audio/wav"></audio>': '') +
-                        '<img src="'+data.acf.dentro_i1.url+'" class="img-responsive" alt="" >'+
-                        '<img src="'+data.acf.dentro_i2.url+'" class="img-responsive" alt="" >'+
-                        '<img src="'+data.acf.dentro_i3.url+'" class="img-responsive" alt="" >'+
+                        (data.acf.dentro_i1 !=false ? '<img src="'+data.acf.dentro_i1.url+'" class="img-responsive" alt="" >': '') +
+                        (data.acf.dentro_i2 !=false ? '<img src="'+data.acf.dentro_i2.url+'" class="img-responsive" alt="" >': '') +
+                        (data.acf.dentro_i3 !=false ? '<img src="'+data.acf.dentro_i3.url+'" class="img-responsive" alt="" >': '') +
                         '<br>'+
                         '<h4 class="modal-title">Esperienza</h4>' +
                         '<div class="p_modal">'+data.acf.esperienza_t+'</div>'+
                         (data.acf.esperienza_a !=false ? '<audio controls><source src="'+data.acf.esperienza_a.url+'" type="audio/wav"></audio>': '') +
-                        '<img src="'+data.acf.esperienza_i.url+'" class="img-responsive" alt="" >'+
+                        (data.acf.esperienza_i !=false ? '<img src="'+data.acf.esperienza_i.url+'" class="img-responsive" alt="" >': '') +
                         '</div>' +
                         '</div>' +
                         '</div>')
@@ -245,8 +245,8 @@ function loadPano(){
         };
 
         // render and show info modal (see pano_1.js)
-        video_src = "https://www.youtube.com/embed/em5PRRO-sK0";
-        renderAndShowIntroModalVideo(data.title.rendered, video_src);
+        //video_src = "https://www.youtube.com/embed/em5PRRO-sK0";
+        renderAndShowIntroModalVideo(data.title.rendered, data.acf.video_introduttivo);
 
     });
 };
