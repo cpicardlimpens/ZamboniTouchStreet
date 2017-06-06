@@ -201,14 +201,16 @@ function loadPano(){
                         '<div class="p_modal">'+data.acf.intro_t+'</div>'+
                         '<br>'+
                         (data.acf.desc_gnal_a !=false ? '<audio controls><source src="'+data.acf.desc_gnal_a.url+'" type="audio/wav"></audio>': '') +
-                        (data.acf.dentro_i1 !=false ? '<img src="'+data.acf.dentro_i1.url+'" class="img-responsive" alt="" >': '') +
-                        (data.acf.dentro_i2 !=false ? '<img src="'+data.acf.dentro_i2.url+'" class="img-responsive" alt="" >': '') +
-                        (data.acf.dentro_i3 !=false ? '<img src="'+data.acf.dentro_i3.url+'" class="img-responsive" alt="" >': '') +
+                        (data.acf.dentro_i1 !=false ? '<div class="responsive-50"><div class="gallery"><a target="_blank" href="'+data.acf.dentro_i1.url+'"><img src="'+data.acf.dentro_i1.url+'" alt="" ></a></div></div>': '') +
+                        (data.acf.dentro_i2 !=false ? '<div class="responsive-50"><div class="gallery"><a target="_blank" href="'+data.acf.dentro_i2.url+'"><img src="'+data.acf.dentro_i2.url+'" alt="" ></a></div></div>': '') +
+                        (data.acf.dentro_i3 !=false ? '<div class="responsive-50"><div class="gallery"><a target="_blank" href="'+data.acf.dentro_i3.url+'"><img src="'+data.acf.dentro_i3.url+'" alt="" ></a></div></div>': '') +
+                        '<div class="clearfix"></div>'+
                         '<br>'+
                         '<h4 class="modal-title">Esperienza</h4>' +
                         '<div class="p_modal">'+data.acf.esperienza_t+'</div>'+
                         (data.acf.esperienza_a !=false ? '<audio controls><source src="'+data.acf.esperienza_a.url+'" type="audio/wav"></audio>': '') +
-                        (data.acf.esperienza_i !=false ? '<img src="'+data.acf.esperienza_i.url+'" class="img-responsive" alt="" >': '') +
+                        (data.acf.esperienza_i !=false ? '<div class="responsive-100"><div class="gallery"><a target="_blank" href="'+data.acf.esperienza_i.url+'"><img src="'+data.acf.esperienza_i.url+'" alt="" ></a></div></div>': '') +
+                        '<div class="clearfix"></div>'+
                         '</div>' +
                         '</div>' +
                         '</div>')
