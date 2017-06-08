@@ -226,9 +226,9 @@ function loadPano(){
 
                         var pi_ = 'pi'+data.id+'.ipoint';
 
-                        $('#'+pi_).click(function() {
+                        $('#'+pi_).on('click touchstart', function() {
                             // render modal window
-                            console.log('click!!');
+                            console.log('click!!!');
                             $("#pi"+data.id).modal();
                         });
 
