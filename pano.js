@@ -4,7 +4,7 @@ var API_BASE_URL = "http://zambonits.limpica.net/wp/wp-json/wp/v2/"
 /*Introduction to the step*/
 function renderAndShowIntroModalVideo(title, vid_src){
 
-    $('#modals').html('<div class="modal fade" id="myModal" role="dialog">' +
+    $('#modal_i').html('<div class="modal fade" id="myModal" role="dialog">' +
                         '<div class="modal-dialog">' +
                             '<div class="modal-content" style="background-color:rgba(255,255,255,0.2); top:100px">' +
                                 '<div class="modal-header" style="border-bottom: 0px solid #e5e5e5">' +
@@ -163,19 +163,10 @@ function loadPano(){
             ip = interestPoints[i]; var index=i;
             $.getJSON( API_BASE_URL+"posts/"+ip.ID, function( data ) {
                 console.log(API_BASE_URL+"posts/"+ip.ID);
-                //remove "false" value
-                /*var original = {a:1, b:2, c:3};
-                var squaredValues = $.map(original, function (value, key) {
-                    return [key, value * value];
-                });
-                original=squaredValues;console.log("r"+original);
-                $.each(original, function(value, key) { this[key] = value +3;  }); console.log("r  "+ original)*/
-
                 $.each( data.acf, function(key,value  ) {
 
                     if(value==false) {
                         //console.log(ip.ID+" - catégories vides:"+key);
-                        //$.extend("bbbb");
                         console.log(ip.ID+" - catégories vides:"+key+"/ value: "+value);
                     }
                     //console.log( key + "///: " + value );
@@ -188,32 +179,10 @@ function loadPano(){
                     $('.interest_points').append(rendered);
 
                     //todo: comment faire si le champ acf est vide??
-                    $('#modals').append('<div class="modal fade" id="pi'+data.id+'" role="dialog">' +
-                        '<div class="modal-dialog">' +
-                        '<div class="modal-content" style="background-color:rgba(255,255,255,0.2); top:100px">' +
-                        '<div class="modal-header" style="border-bottom: 0px solid #e5e5e5">' +
-                        '<button type="button" class="close" data-dismiss="modal">&times;</button>' +
-                        '<h3 class="modal-title">'+data.title.rendered+'</h3>' +
-                        '</div>' +
-                        '<div class="modal-body">' +
-                        '<div class="p_modal">'+data.acf.scheda_tecnica+'</div>'+
-                        '<br>'+
-                        '<div class="p_modal">'+data.acf.intro_t+'</div>'+
-                        '<br>'+
-                        (data.acf.desc_gnal_a !=false ? '<audio controls><source src="'+data.acf.desc_gnal_a.url+'" type="audio/wav"></audio>': '') +
-                        (data.acf.dentro_i1 !=false ? '<div class="responsive-50"><div class="gallery"><a target="_blank" href="'+data.acf.dentro_i1.url+'"><img src="'+data.acf.dentro_i1.url+'" alt="" ></a></div></div>': '') +
-                        (data.acf.dentro_i2 !=false ? '<div class="responsive-50"><div class="gallery"><a target="_blank" href="'+data.acf.dentro_i2.url+'"><img src="'+data.acf.dentro_i2.url+'" alt="" ></a></div></div>': '') +
-                        (data.acf.dentro_i3 !=false ? '<div class="responsive-50"><div class="gallery"><a target="_blank" href="'+data.acf.dentro_i3.url+'"><img src="'+data.acf.dentro_i3.url+'" alt="" ></a></div></div>': '') +
-                        '<div class="clearfix"></div>'+
-                        '<br>'+
-                        '<h4 class="modal-title">Esperienza</h4>' +
-                        '<div class="p_modal">'+data.acf.esperienza_t+'</div>'+
-                        (data.acf.esperienza_a !=false ? '<audio controls><source src="'+data.acf.esperienza_a.url+'" type="audio/wav"></audio>': '') +
-                        (data.acf.esperienza_i !=false ? '<div class="responsive-100"><div class="gallery"><a target="_blank" href="'+data.acf.esperienza_i.url+'"><img src="'+data.acf.esperienza_i.url+'" alt="" ></a></div></div>': '') +
-                        '<div class="clearfix"></div>'+
-                        '</div>' +
-                        '</div>' +
-                        '</div>')
+                    $.get('templates/interest_points_content.mst', function(template) {
+
+                        var content = Mustache.render(template, data);
+                        $('#modal_ip').append(content);
 
                         var url = $('#pi'+data.id+' audio').attr('src');
                         $("#pi"+data.id).on('hide.bs.modal', function(){
@@ -224,15 +193,10 @@ function loadPano(){
                             $('#pi'+data.id+' audio').attr('src', url);
                         });
 
-                        var pi_ = 'pi'+data.id+'.ipoint';
 
-                        $('#'+pi_).on('click touchstart', function() {
-                            // render modal window
-                            console.log('click!!!');
-                            $("#pi"+data.id).modal();
-                        });
+                    });
 
-
+        
                 });
                 var contents = data.acf;
                 console.log("got interest point details", contents);
