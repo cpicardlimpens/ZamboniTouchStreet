@@ -193,10 +193,16 @@ function loadPano(){
                             $('#pi'+data.id+' audio').attr('src', url);
                         });
 
+                        var pi_ = 'pi'+data.id+'.ipoint';
 
+                        $('#'+pi_).on('click touchstart', function() {
+                            // render modal window
+                            console.log('click!!!');
+                            $("#pimod"+data.id).modal();
+                        });
                     });
 
-        
+
                 });
                 var contents = data.acf;
                 console.log("got interest point details", contents);
