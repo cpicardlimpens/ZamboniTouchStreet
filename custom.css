@@ -6,6 +6,11 @@ p {
     font-size: 14px;
 }
 
+.p_modal {
+    font-size: 14px;
+    text-align: justify;
+}
+
 .p_small {
     font-size: 10px;
 }
@@ -91,3 +96,55 @@ p {
     height: 100%;
 }
 
+
+/* image gallery */
+div.gallery {
+    border: 1px solid #ccc;
+}
+
+div.gallery:hover {
+    border: 1px solid #777;
+}
+
+div.gallery img {
+    width: 100%;
+    height: auto;
+}
+
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.responsive-50{
+    padding: 2px 2px;
+    float: left;
+    width: 50%;
+}
+.responsive-100{
+    padding: 2px 2px;
+    float: left;
+    width: 100%;
+}
+@media only screen and (max-width: 700px){
+    .responsive {
+        width: 49.99999%;
+        margin: 6px 0;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    .responsive {
+        width: 100%;
+    }
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}

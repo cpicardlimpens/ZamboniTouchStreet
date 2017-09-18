@@ -14,9 +14,11 @@
     <!-- Custom styles for this template -->
     <link href="cover.css" rel="stylesheet">
     <link href="custom.css" rel="stylesheet">
+    <!--<link href="panorama_viewer/panorama_viewer.css" rel="stylesheet">-->
+
     <link href="pano.css" rel="stylesheet">
     <!-- <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"> -->
-    <link href="panorama-slider.min.css" rel="stylesheet">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -25,32 +27,35 @@
 </head>
 
 <body>
-    <div id="modals"></div>
+    <div id="modal_i"></div>
+    <div id="modal_ip"></div>
 
-    <div id="slider">
-    </div>
+    <!-- panorama image -->
+    <div id="panorama" class="pano">
+        <!-- FIXME : on long press on control buttons, the placement of annotations gets broken =>> panorama background move and annotation move get off of sync.
+        <div class="controls">
+			<a href="#" class="left">&laquo;</a>
+			<a href="#" class="right">&raquo;</a>
+        </div> -->
+        <div class="interest_points" >
 
-    <div style="position:fixed; right: 5px; top :-5px">
-        <div style="font-size:30px; font-family:Verdana,sans-serif">
-            <a href="map.html" style="color:black; text-shadow: rgba(0,0,0,0.8);">X</a>
         </div>
     </div>
+    <!-- close button -->
+    <div style="position:fixed; right: 5px; top :-5px">
+        <div style="font-size:20px; font-family:Verdana,sans-serif">
+            <a href="map.html" style="color:white; text-shadow: rgba(0,0,0,0.8);">X</a>
+
+        </div>
+    </div>
+
+    <!-- info modal container -->
     <div style="position:fixed; left: 5px; bottom :10px">
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="font-style: italic;">i</button>
     </div>
 
-<!--
-    <div id="steps_nav">
-        step
-        <a class="previous" href="#9">
-            9
-        </a>
-        |
-        <a class="next" href="#26">
-            26
-        </a>
-    </div>
--->
+    <!-- Steps navigation -->
+    <div id="steps_nav" style="position:fixed; right: 5px; top :25px; font-size:14px; "></div>
 
     <!-- Bootstrap core JavaScript -->
     <script>
@@ -59,8 +64,9 @@
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="panorama-slider.min.js"></script>
     <!-- Application JS -->
+    <script src="jquery.pano.js"></script>
+    <script src="mustache.min.js"></script>
     <script src="pano.js"></script>
 </body>
 
